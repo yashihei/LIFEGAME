@@ -19,10 +19,10 @@ int WINAPI WinMain( HINSTANCE hInstance, HINSTANCE hPrevInstance,LPSTR lpCmdLine
 	SetDrawScreen(DX_SCREEN_BACK);
 
 	//フォント読み込み
-	//const char* font_path = "dat/BMmini.TTF";
-	//AddFontResourceEx(font_path, FR_PRIVATE, NULL);
-	//ChangeFont("BM mini", DX_CHARSET_DEFAULT);//多分これしか使わない
-	//SetFontSize(18);
+	const char* font_path = "dat/BMmini.TTF";
+	AddFontResourceEx(font_path, FR_PRIVATE, NULL);
+	ChangeFont("BM mini", DX_CHARSET_DEFAULT);//多分これしか使わない
+	SetFontSize(18);
 
 #ifdef DEBUG
 	//デバグ用にコンソール出してやる

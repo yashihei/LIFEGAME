@@ -3,8 +3,8 @@
 
 class Board
 {
-	static const int WIDTH = 30;
-	static const int HEIGHT = 30;
+	static const int WIDTH = 50;
+	static const int HEIGHT = 50;
 	std::array<std::array<bool, WIDTH>, HEIGHT> map;
 	int size;
 public:

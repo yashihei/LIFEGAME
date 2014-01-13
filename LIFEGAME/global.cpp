@@ -6,7 +6,8 @@ using namespace std;
 
 const int KEY_NUM = 256;
 int keyState[KEY_NUM];
-int mouseState;
+int leftMouseState;
+int rightMouseState;
 
 void InputUpdate() {
 	char tKeyState[KEY_NUM];
@@ -20,9 +21,14 @@ void InputUpdate() {
 	}
 
 	if ((GetMouseInput() & MOUSE_INPUT_LEFT) != 0) {
-		mouseState++;
+		leftMouseState++;
 	} else {
-		mouseState = 0;
+		leftMouseState = 0;
+	}
+	if ((GetMouseInput() & MOUSE_INPUT_RIGHT) != 0) {
+		rightMouseState++;
+	} else {
+		rightMouseState = 0;
 	}
 }
 
@@ -30,8 +36,12 @@ int GetKey(int keyCode) {
 	return keyState[keyCode];
 }
 
-int GetMouse() {
-	return mouseState;
+int GetLeftMouse() {
+	return leftMouseState;
+}
+
+int GetRightMouse() {
+	return rightMouseState;
 }
 
 map<string, int> dataTbl;

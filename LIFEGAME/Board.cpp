@@ -4,11 +4,12 @@
 #include "global.h"
 
 Board::Board(void) {
-	for (int i = 0; i < HEIGHT; i++) for (int j = 0; j < WIDTH; j++) map[i][j] = false;
 	size = ConstParam::SCREEN_WIDTH / WIDTH;
+	Init();
 }
 
 void Board::Init(void) {
+	for (int i = 0; i < HEIGHT; i++) for (int j = 0; j < WIDTH; j++) map[i][j] = false;
 }
 
 void Board::Move(void) {//世代の更新
@@ -33,13 +34,17 @@ void Board::Move(void) {//世代の更新
 
 void Board::Input(void) {
 	int x, y;
-	if (GetMouse() == 1) {
-		GetMousePoint(&x, &y);
+	GetMousePoint(&x, &y);
 
-		int px = x / size;
-		int py = y / size;
+	int px = x / size;
+	int py = y / size;
 
+	if (isOut(px, py)) return;//ありぇ
+
+	if (GetLeftMouse() > 1) {
 		map[py][px] = true;
+	} else if (GetRightMouse() > 1) {
+		map[py][px] = false;
 	}
 }
 
@@ -72,7 +77,6 @@ int Board::search(int x, int y) {
 			if (map[y + dy][x + dx]) cnt++;
 		}
 	}
-	if (cnt > 0)printf("%d\n", cnt);
 	return cnt;
 }
 

@@ -23,11 +23,20 @@ void GameManager::Move(void) {
 		break;
 	}
 	fps->Move();
+	if (GetKey(KEY_INPUT_R) == 1) board->Init();
 	//fps->Wait();
 }
 
 void GameManager::Draw(void) {
-	board->Draw();
+	switch(state) {
+	case State::IN_GAME:
+		board->Draw();
+		break;
+	case State::PAUSE:
+		board->Draw();
+		DrawFormatString(0, 0, GetColor(255, 255, 255), "STOP");
+		break;
+	}
 #ifdef DEBUG
 	fps->Draw();
 #endif
