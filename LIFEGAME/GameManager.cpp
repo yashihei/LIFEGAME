@@ -13,7 +13,7 @@ GameManager::GameManager(void) {
 void GameManager::Move(void) {
 	switch (state) {
 	case State::IN_GAME:
-		board->Move();
+		if (cnt % 3 == 0) board->Move();
 		if (GetKey(KEY_INPUT_SPACE) == 1) state = State::PAUSE;
 		break;
 	case State::PAUSE:
@@ -22,9 +22,10 @@ void GameManager::Move(void) {
 		if (GetKey(KEY_INPUT_N) == 1) board->Move();//1¢‘ã‚¾‚¯i‚ß‚é
 		break;
 	}
-	fps->Move();
 	if (GetKey(KEY_INPUT_R) == 1) board->Init();
+	fps->Move();
 	//fps->Wait();
+	cnt++;
 }
 
 void GameManager::Draw(void) {

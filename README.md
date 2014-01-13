@@ -7,11 +7,11 @@ https://www.dropbox.com/s/btqodigzhqeq8y7/LIFEGAME.zip
 
 ## 操作方法
 * Space
-    * ポーズ
+    * ポーズと進行の切り替え
 * rキー
     * リセット
 
-### ポーズ中に可能
+### ポーズ中のみに可能
 * nキー
     * 1世代進める
 * 左クリック

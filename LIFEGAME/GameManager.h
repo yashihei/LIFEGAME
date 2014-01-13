@@ -17,6 +17,8 @@ class GameManager
 	std::shared_ptr<Fps> fps;
 	std::shared_ptr<Board> board;
 
+	int cnt;
+
 public:
 	GameManager(void);
 	void Move(void);
