@@ -51,16 +51,27 @@ void Board::Input(void) {
 void Board::Draw(void) {
 	//良い子のみんなはこんな変数名付けちゃ駄目だよ！
 	int rgb1 = GetColor(0, 217, 0);
-	int rgb2 = GetColor(50, 50, 50);
-	int rgb3 = GetColor(30, 30, 30);
+	int rgb2 = GetColor(30, 30, 30);
+	int rgb3 = GetColor(60, 60, 60);
 
-	//TODO: 5セルごとに濃い線を
 	for (int y = 0; y < HEIGHT; y++) {
 		for (int x = 0; x < WIDTH; x++) {
 			int tx = x * size, ty = y * size;
 			if (map[y][x] == true) DrawFillBox(tx, ty, tx + size + 1, ty + size + 1, rgb1);
-			DrawLineBox(tx, ty, tx + size + 1, ty + size + 1, rgb2);
+			//DrawLineBox(tx, ty, tx + size + 1, ty + size + 1, rgb2);
 		}
+	}
+
+	int t;
+	for (int y = 0; y < HEIGHT; y++) {
+		if (y % 5 == 0) t = rgb3;
+		else t = rgb2;
+		DrawLine(0, y * size, ConstParam::SCREEN_WIDTH, y * size, t);
+	}
+	for (int x = 0; x < WIDTH; x++) {
+		if (x % 5 == 0) t = rgb3;
+		else t = rgb2;
+		DrawLine(x * size, 0, x * size, ConstParam::SCREEN_HEIGHT, t);
 	}
 }
 
