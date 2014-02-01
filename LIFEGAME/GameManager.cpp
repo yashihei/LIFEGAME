@@ -1,29 +1,34 @@
-#include <DxLib.h>
 #include "GameManager.h"
+
+#include <DxLib.h>
 #include "global.h"
 #include "Fps.h"
 #include "Board.h"
+#include "Input.h"
 
 GameManager::GameManager(void) {
 	state = State::PAUSE;//‚Æ‚è‚ ‚¦‚¸‚Í
 	fps = std::make_shared<Fps>();
-	board = std::make_shared<Board>();
+	board = std::make_shared<Board>(this);
+	input = std::make_shared<Input>();
+	cnt = 0;
 }
 
 void GameManager::Move(void) {
 	switch (state) {
 	case State::IN_GAME:
 		if (cnt % 3 == 0) board->Move();
-		if (GetKey(KEY_INPUT_SPACE) == 1) state = State::PAUSE;
+		if (input->isKeyCliked(KEY_INPUT_SPACE)) state = State::PAUSE;
 		break;
 	case State::PAUSE:
 		board->Input();
-		if (GetKey(KEY_INPUT_SPACE) == 1) state = State::IN_GAME;
-		if (GetKey(KEY_INPUT_N) == 1) board->Move();//1¢‘ã‚¾‚¯i‚ß‚é
+		if (input->isKeyCliked(KEY_INPUT_SPACE)) state = State::IN_GAME;
+		if (input->isKeyCliked(KEY_INPUT_N)) board->Move();//1¢‘ã‚¾‚¯i‚ß‚é
 		break;
 	}
-	if (GetKey(KEY_INPUT_R) == 1) board->Init();
+	if (input->isKeyCliked(KEY_INPUT_R)) board->Init();
 	fps->Move();
+	input->move();
 	//fps->Wait();
 	cnt++;
 }

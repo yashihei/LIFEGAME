@@ -3,6 +3,7 @@
 #include "global.h"
 #include "ConstParam.h"
 #include "GameManager.h"
+#include "Input.h"
 #pragma warning(disable:4996)
 
 int WINAPI WinMain( HINSTANCE hInstance, HINSTANCE hPrevInstance,LPSTR lpCmdLine, int nCmdShow ) {
@@ -33,14 +34,11 @@ int WINAPI WinMain( HINSTANCE hInstance, HINSTANCE hPrevInstance,LPSTR lpCmdLine
 	auto gm = std::make_shared<GameManager>();
 
 	while (ProcessMessage() == 0) {
-		InputUpdate();
-
 		gm->Move();
-		
 		ClearDrawScreen();
 		gm->Draw();
 		ScreenFlip();
-		if (GetKey(KEY_INPUT_ESCAPE) == 1) break;
+		if (gm->getInput()->isKeyCliked(KEY_INPUT_ESCAPE) == 1) break;
 	}
 
 	//RemoveFontResourceEx(font_path, FR_PRIVATE, NULL);

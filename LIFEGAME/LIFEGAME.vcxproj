@@ -89,17 +89,21 @@
   <ItemGroup>
     <ClCompile Include="Board.cpp" />
     <ClCompile Include="ConstParam.cpp" />
+    <ClCompile Include="data.cpp" />
     <ClCompile Include="Fps.cpp" />
     <ClCompile Include="GameManager.cpp" />
     <ClCompile Include="global.cpp" />
+    <ClCompile Include="Input.cpp" />
     <ClCompile Include="main.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Board.h" />
     <ClInclude Include="ConstParam.h" />
+    <ClInclude Include="data.h" />
     <ClInclude Include="Fps.h" />
     <ClInclude Include="GameManager.h" />
     <ClInclude Include="global.h" />
+    <ClInclude Include="Input.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

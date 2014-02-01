@@ -1,9 +1,14 @@
-#include <DxLib.h>
 #include "Board.h"
-#include "ConstParam.h"
-#include "global.h"
 
-Board::Board(void) {
+#include <DxLib.h>
+#include "ConstParam.h"
+#include "Input.h"
+#include "global.h"
+#include "GameManager.h"
+
+Board::Board(GameManager* gm):
+gm(gm)
+{
 	size = ConstParam::SCREEN_WIDTH / WIDTH;
 	Init();
 }
@@ -41,9 +46,9 @@ void Board::Input(void) {
 
 	if (isOut(px, py)) return;//‚ ‚è‚¥
 
-	if (GetLeftMouse() > 1) {
+	if (gm->getInput()->isMouseLeftPushed()) {
 		map[py][px] = true;
-	} else if (GetRightMouse() > 1) {
+	} else if (gm->getInput()->isMouseRightPushed()) {
 		map[py][px] = false;
 	}
 }
@@ -64,12 +69,12 @@ void Board::Draw(void) {
 
 	int t;
 	for (int y = 0; y < HEIGHT; y++) {
-		if (y % 5 == 0) t = rgb3;
+		if (y % 10 == 0) t = rgb3;
 		else t = rgb2;
 		DrawLine(0, y * size, ConstParam::SCREEN_WIDTH, y * size, t);
 	}
 	for (int x = 0; x < WIDTH; x++) {
-		if (x % 5 == 0) t = rgb3;
+		if (x % 10 == 0) t = rgb3;
 		else t = rgb2;
 		DrawLine(x * size, 0, x * size, ConstParam::SCREEN_HEIGHT, t);
 	}
